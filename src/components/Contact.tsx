@@ -1,5 +1,21 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useRef, type FormEvent } from "react";
+import { 
+  Mail, 
+  Phone, 
+  MapPin, 
+  Linkedin, 
+  Github, 
+  Code2, 
+  Twitter, 
+  Send, 
+  Copy, 
+  CheckCircle,
+  User,
+  MessageSquare,
+  ArrowUp,
+  Clock,
+  Shield} from "lucide-react";
 
 const contact = {
   name: "Thejus Mohanan",
@@ -51,6 +67,9 @@ const Contact = () => {
     setTimeout(() => setHoveredContact(null), 2000);
   };
 
+  // If you don't have Lucide React installed, you can use these SVG icons
+  // or install it: npm install lucide-react
+  
   return (
     <section id="contact" className="relative min-h-screen bg-black text-white flex items-center justify-center overflow-hidden">
       {/* Animated Background with scroll effects */}
@@ -63,7 +82,7 @@ const Contact = () => {
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           style={{ y: useTransform(scrollY, [0, 500], [0, 120]) }}
-          className="absolute top-1/3 left-1/4 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-3xl opacity-10"
+          className="absolute top-1/3 left-1/4 w-96 h-96 bg-blue-600/20 rounded-full mix-blend-screen filter blur-3xl"
           animate={{ 
             x: ["0%", "6%", "0%"],
             scale: [1, 1.25, 1]
@@ -76,7 +95,7 @@ const Contact = () => {
         />
         <motion.div
           style={{ y: useTransform(scrollY, [0, 500], [0, -100]) }}
-          className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-600 rounded-full mix-blend-screen filter blur-3xl opacity-10"
+          className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-purple-600/20 rounded-full mix-blend-screen filter blur-3xl"
           animate={{ 
             y: ["0%", "-6%", "0%"],
             rotate: [0, 180, 360]
@@ -89,7 +108,7 @@ const Contact = () => {
         />
         <motion.div
           style={{ y: useTransform(scrollY, [0, 500], [0, 80]) }}
-          className="absolute top-2/3 left-1/3 w-64 h-64 bg-cyan-600 rounded-full mix-blend-screen filter blur-3xl opacity-10"
+          className="absolute top-2/3 left-1/3 w-64 h-64 bg-cyan-600/20 rounded-full mix-blend-screen filter blur-3xl"
           animate={{ 
             scale: [1, 1.4, 1],
             opacity: [0.1, 0.2, 0.1]
@@ -171,8 +190,10 @@ const Contact = () => {
               className="p-8 rounded-xl bg-gradient-to-br from-neutral-900 to-black border border-neutral-800"
             >
               <div className="text-center mb-8">
-                <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-4xl">
-                  {contact.name.split(' ').map(n => n[0]).join('')}
+                <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                  <div className="text-3xl font-bold text-white">
+                    TM
+                  </div>
                 </div>
                 <h3 className="text-2xl font-semibold">{contact.name}</h3>
                 <p className="text-neutral-400 mt-2">{contact.role}</p>
@@ -185,21 +206,21 @@ const Contact = () => {
                     type: "email",
                     label: "Email",
                     value: contact.email,
-                    icon: "✉️",
+                    icon: <Mail className="w-5 h-5" />,
                     action: () => handleCopy(contact.email, "email")
                   },
                   {
                     type: "phone",
                     label: "Phone",
                     value: contact.phone,
-                    icon: "📞",
+                    icon: <Phone className="w-5 h-5" />,
                     action: () => handleCopy(contact.phone, "phone")
                   },
                   {
                     type: "location",
                     label: "Location",
                     value: contact.location,
-                    icon: "📍",
+                    icon: <MapPin className="w-5 h-5" />,
                     action: () => handleCopy(contact.location, "location")
                   }
                 ].map((item) => (
@@ -209,7 +230,9 @@ const Contact = () => {
                     onClick={item.action}
                     className="flex items-center gap-4 p-4 rounded-lg bg-neutral-900/50 hover:bg-neutral-800/50 cursor-pointer transition-colors duration-300 group"
                   >
-                    <div className="text-2xl">{item.icon}</div>
+                    <div className="text-blue-400">
+                      {item.icon}
+                    </div>
                     <div className="flex-1">
                       <p className="text-sm text-neutral-400">{item.label}</p>
                       <p className="font-medium">{item.value}</p>
@@ -217,9 +240,19 @@ const Contact = () => {
                     <motion.button
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
-                      className="px-3 py-1 text-sm bg-neutral-800 rounded-lg text-neutral-300 hover:text-white hover:bg-blue-500/20 transition-colors duration-300"
+                      className="px-3 py-1 text-sm bg-neutral-800 rounded-lg text-neutral-300 hover:text-white hover:bg-blue-500/20 transition-colors duration-300 flex items-center gap-1"
                     >
-                      {hoveredContact === `copied-${item.type}` ? "Copied!" : "Copy"}
+                      {hoveredContact === `copied-${item.type}` ? (
+                        <>
+                          <CheckCircle className="w-3 h-3" />
+                          Copied
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-3 h-3" />
+                          Copy
+                        </>
+                      )}
                     </motion.button>
                   </motion.div>
                 ))}
@@ -230,10 +263,10 @@ const Contact = () => {
                 <h4 className="text-lg font-semibold mb-4 text-center">Connect with me</h4>
                 <div className="flex justify-center gap-6">
                   {[
-                    { platform: "LinkedIn", url: contact.linkedin, icon: "💼", color: "hover:text-blue-400" },
-                    { platform: "GitHub", url: contact.github, icon: "🐙", color: "hover:text-gray-300" },
-                    { platform: "LeetCode", url: contact.leetcode, icon: "⚡", color: "hover:text-yellow-400" },
-                    { platform: "Twitter", url: contact.twitter, icon: "🐦", color: "hover:text-sky-400" }
+                    { platform: "LinkedIn", url: contact.linkedin, icon: <Linkedin className="w-6 h-6" />, color: "text-blue-400 hover:text-blue-300" },
+                    { platform: "GitHub", url: contact.github, icon: <Github className="w-6 h-6" />, color: "text-gray-300 hover:text-white" },
+                    { platform: "LeetCode", url: contact.leetcode, icon: <Code2 className="w-6 h-6" />, color: "text-yellow-400 hover:text-yellow-300" },
+                    { platform: "Twitter", url: contact.twitter, icon: <Twitter className="w-6 h-6" />, color: "text-sky-400 hover:text-sky-300" }
                   ].map((social) => (
                     <motion.a
                       key={social.platform}
@@ -242,7 +275,7 @@ const Contact = () => {
                       rel="noopener noreferrer"
                       whileHover={{ y: -5, scale: 1.2 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`text-2xl ${social.color} transition-colors duration-300`}
+                      className={`${social.color} transition-colors duration-300`}
                       aria-label={social.platform}
                     >
                       {social.icon}
@@ -264,10 +297,10 @@ const Contact = () => {
                 <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
                 <h4 className="text-lg font-semibold">Currently Available</h4>
               </div>
-              <p className="text-neutral-300 text-sm">
-                Open to new opportunities, freelance projects, and collaborations.
-                Response time: Usually within 24 hours.
-              </p>
+              <div className="flex items-start gap-2 text-neutral-300 text-sm">
+                <Clock className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                <span>Open to new opportunities. Response time: Usually within 24 hours.</span>
+              </div>
             </motion.div>
           </motion.div>
 
@@ -285,20 +318,26 @@ const Contact = () => {
               }}
               className="p-8 rounded-xl bg-gradient-to-br from-neutral-900 to-black border border-neutral-800"
             >
-              <h3 className="text-2xl font-semibold mb-2">Send me a message</h3>
-              <p className="text-neutral-400 mb-8">Let's start a conversation</p>
+              <div className="flex items-center gap-3 mb-6">
+                <MessageSquare className="w-6 h-6 text-blue-400" />
+                <div>
+                  <h3 className="text-2xl font-semibold">Send me a message</h3>
+                  <p className="text-neutral-400">Let's start a conversation</p>
+                </div>
+              </div>
 
               <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                 {[
-                  { name: "name", label: "Your Name", type: "text", placeholder: "John Doe" },
-                  { name: "email", label: "Your Email", type: "email", placeholder: "john@example.com" },
-                  { name: "message", label: "Your Message", type: "textarea", placeholder: "Hi Thejus, I'd like to discuss..." }
+                  { name: "name", label: "Your Name", icon: <User className="w-4 h-4" />, placeholder: "John Doe" },
+                  { name: "email", label: "Your Email", icon: <Mail className="w-4 h-4" />, placeholder: "john@example.com" },
+                  { name: "message", label: "Your Message", icon: <MessageSquare className="w-4 h-4" />, placeholder: "Hi Thejus, I'd like to discuss..." }
                 ].map((field) => (
                   <div key={field.name}>
-                    <label className="block text-sm font-medium text-neutral-300 mb-2">
+                    <label className="block text-sm font-medium text-neutral-300 mb-2 flex items-center gap-2">
+                      {field.icon}
                       {field.label}
                     </label>
-                    {field.type === 'textarea' ? (
+                    {field.name === 'message' ? (
                       <textarea
                         value={formData[field.name as keyof typeof formData]}
                         onChange={(e) => setFormData({...formData, [field.name]: e.target.value})}
@@ -309,7 +348,7 @@ const Contact = () => {
                       />
                     ) : (
                       <input
-                        type={field.type}
+                        type={field.name === 'email' ? 'email' : 'text'}
                         value={formData[field.name as keyof typeof formData]}
                         onChange={(e) => setFormData({...formData, [field.name]: e.target.value})}
                         placeholder={field.placeholder}
@@ -325,9 +364,10 @@ const Contact = () => {
                   <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400 text-center"
+                    className="p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400 text-center flex items-center justify-center gap-2"
                   >
-                    ✅ Message sent successfully! I'll get back to you soon.
+                    <CheckCircle className="w-5 h-5" />
+                    Message sent successfully! I'll get back to you soon.
                   </motion.div>
                 )}
 
@@ -336,7 +376,7 @@ const Contact = () => {
                   disabled={isSubmitting}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-lg relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {/* Button shine effect */}
                   <motion.div
@@ -357,9 +397,7 @@ const Contact = () => {
                       </>
                     ) : (
                       <>
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                        </svg>
+                        <Send className="w-5 h-5" />
                         Send Message
                       </>
                     )}
@@ -367,9 +405,10 @@ const Contact = () => {
                 </motion.button>
               </form>
 
-              <p className="text-neutral-500 text-sm mt-6 text-center">
-                Your information is safe with me. I don't share contact details with third parties.
-              </p>
+              <div className="flex items-center gap-2 mt-6 text-neutral-500 text-sm">
+                <Shield className="w-4 h-4" />
+                <span>Your information is safe with me. I don't share contact details with third parties.</span>
+              </div>
             </motion.div>
 
             {/* Quick Actions */}
@@ -384,9 +423,9 @@ const Contact = () => {
                 href={`mailto:${contact.email}?subject=Let's Connect`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="p-4 text-center bg-neutral-900/50 hover:bg-blue-500/20 border border-neutral-800 rounded-lg transition-colors duration-300 flex flex-col items-center gap-2"
+                className="p-4 text-center bg-neutral-900/50 hover:bg-blue-500/20 border border-neutral-800 rounded-lg transition-colors duration-300 flex flex-col items-center gap-2 group"
               >
-                <span className="text-2xl">📧</span>
+                <Mail className="w-6 h-6 text-blue-400 group-hover:text-blue-300" />
                 <span className="text-sm font-medium">Email Directly</span>
               </motion.a>
               
@@ -394,9 +433,9 @@ const Contact = () => {
                 onClick={() => handleCopy(contact.phone, "phone")}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="p-4 text-center bg-neutral-900/50 hover:bg-green-500/20 border border-neutral-800 rounded-lg transition-colors duration-300 flex flex-col items-center gap-2"
+                className="p-4 text-center bg-neutral-900/50 hover:bg-green-500/20 border border-neutral-800 rounded-lg transition-colors duration-300 flex flex-col items-center gap-2 group"
               >
-                <span className="text-2xl">📱</span>
+                <Phone className="w-6 h-6 text-green-400 group-hover:text-green-300" />
                 <span className="text-sm font-medium">Copy Phone</span>
               </motion.button>
             </motion.div>
@@ -415,12 +454,10 @@ const Contact = () => {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             whileHover={{ scale: 1.1, y: -5 }}
             whileTap={{ scale: 0.95 }}
-            className="p-3 rounded-full bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 transition-colors duration-300"
+            className="p-3 rounded-full bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 transition-colors duration-300 group"
             aria-label="Back to top"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
-            </svg>
+            <ArrowUp className="w-6 h-6 text-neutral-400 group-hover:text-white" />
           </motion.button>
         </motion.div>
       </motion.div>
