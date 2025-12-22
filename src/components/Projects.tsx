@@ -31,7 +31,7 @@ const Projects = () => {
   const yContent = useTransform(scrollY, [0, 500], [30, -30]);
 
   return (
-    <section className="relative min-h-screen bg-black text-white flex flex-col items-center overflow-hidden">
+    <section id="projects" className="relative min-h-screen bg-black text-white flex flex-col items-center overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black to-neutral-900 opacity-90" />
 

@@ -5,7 +5,7 @@ const About = () => {
   const yContent = useTransform(scrollY, [0, 400], [40, -40]);
 
   return (
-    <section className="relative min-h-screen flex items-center bg-black text-white overflow-hidden">
+    <section id="about" className="relative min-h-screen flex items-center bg-black text-white overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-black to-neutral-900 opacity-90" />
 

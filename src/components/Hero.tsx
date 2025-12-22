@@ -6,7 +6,7 @@ const Hero = () => {
   const ySubtitle = useTransform(scrollY, [0, 300], [0, -30]);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-neutral-900 opacity-90" />
 
