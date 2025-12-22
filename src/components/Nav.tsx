@@ -1,11 +1,20 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Download, Menu, X, Home, User, Code2, Mail } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [scrollProgress, setScrollProgress] = useState(0);
+
+  // Navigation items with icons
+  const navItems = [
+    { id: "home", label: "Home", icon: <Home className="w-4 h-4" /> },
+    { id: "about", label: "About", icon: <User className="w-4 h-4" /> },
+    { id: "skills", label: "Skills", icon: <Code2 className="w-4 h-4" /> },
+    { id: "contact", label: "Contact", icon: <Mail className="w-4 h-4" /> }
+  ];
 
   // Scroll effect for navbar background, active section detection, and scroll progress
   useEffect(() => {
@@ -18,8 +27,8 @@ const Navbar = () => {
       const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
       setScrollProgress(scrolled);
       
-      // Detect active section - CHANGED TO LOWERCASE
-      const sections = ["home", "about", "skills", "contact"]; // lowercase
+      // Detect active section
+      const sections = ["home", "about", "skills", "contact"];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -64,14 +73,10 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
-  // Navigation items - CHANGED TO LOWERCASE
-  const navItems = ["home", "about", "skills", "contact"];
-
   // Resume download function
   const downloadResume = () => {
-    // Create a temporary link element
     const link = document.createElement('a');
-    link.href = '/Thejus mohanan.pdf'; // Make sure this file is in your public folder
+    link.href = '/Thejus mohanan.pdf';
     link.download = 'Thejus_Mohanan_Resume.pdf';
     document.body.appendChild(link);
     link.click();
@@ -81,101 +86,155 @@ const Navbar = () => {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 w-full z-50 transition-colors duration-300 ${
-          isScrolled ? "bg-black/90 backdrop-blur-md" : "bg-transparent"
+        className={`fixed top-0 w-full z-50 transition-all duration-500 ${
+          isScrolled 
+            ? "bg-black/95 backdrop-blur-lg shadow-lg" 
+            : "bg-transparent"
         }`}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         {/* Scroll Progress Indicator */}
-        <div 
-          className={`absolute bottom-0 left-0 h-0.5 bg-white transition-all duration-300 ${
+        <motion.div 
+          className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500 transition-all duration-300 ${
             isScrolled ? "opacity-100" : "opacity-0"
           }`}
           style={{ width: `${scrollProgress}%` }}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.3 }}
         />
         
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          {/* Desktop Navigation - hidden on mobile */}
-          <div className="hidden md:flex items-center justify-center">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center justify-between">
+            {/* Logo/Brand */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-2"
+            >
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                <Code2 className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-white font-semibold text-lg">Portfolio</span>
+            </motion.div>
+
             {/* Centered Navigation Links */}
-            <ul className="flex space-x-8 text-neutral-300 text-sm sm:text-base font-medium">
-              {navItems.map((section) => (
-                <li
-                  key={section}
-                  className={`hover:text-white transition-colors cursor-pointer ${
-                    activeSection === section ? "text-white font-semibold" : "text-neutral-300"
+            <div className="flex items-center gap-1 bg-black/30 backdrop-blur-sm rounded-full p-1 border border-white/10">
+              {navItems.map((item) => (
+                <motion.button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`flex items-center gap-2 px-6 py-2 rounded-full transition-all duration-300 ${
+                    activeSection === item.id 
+                      ? "bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-white border border-blue-500/30" 
+                      : "text-neutral-300 hover:text-white hover:bg-white/5"
                   }`}
-                  onClick={() => scrollToSection(section)}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
-                  {/* Capitalize for display only */}
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                  {activeSection === section && (
+                  {item.icon}
+                  <span className="font-medium">{item.label}</span>
+                  {activeSection === item.id && (
                     <motion.div 
-                      className="h-0.5 bg-white mt-1"
-                      layoutId="activeSectionIndicator"
+                      className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
+                      layoutId="activeIndicator"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.3 }}
                     />
                   )}
-                </li>
+                </motion.button>
               ))}
-            </ul>
-            
-            {/* Resume Download Button - Desktop (Positioned absolutely on the right) */}
-            <div className="absolute right-6">
-              <button
-                onClick={downloadResume}
-                className="bg-white text-black px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors font-medium text-sm sm:text-base flex items-center gap-2"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Resume
-              </button>
             </div>
+
+            {/* Resume Download Button */}
+            <motion.button
+              onClick={downloadResume}
+              className="group relative overflow-hidden px-6 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium flex items-center gap-2"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+            >
+              {/* Button shine effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "100%" }}
+                transition={{ duration: 0.6 }}
+              />
+              <Download className="w-4 h-4" />
+              <span className="relative z-10">Resume</span>
+            </motion.button>
           </div>
 
-          {/* Mobile Header with Hamburger */}
-          <div className="flex md:hidden justify-between items-center">
-            {/* Resume Download Button - Mobile (only icon) */}
-            <button
-              onClick={downloadResume}
-              className="bg-white text-black p-2 rounded-lg hover:bg-gray-200 transition-colors"
-              aria-label="Download Resume"
+          {/* Mobile Navigation */}
+          <div className="flex md:hidden items-center justify-between">
+            {/* Logo/Brand */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-2"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
-            </button>
-            
-            {/* Hamburger Menu Button */}
-            <button
-              className="relative w-8 h-8 focus:outline-none"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-label="Toggle menu"
-            >
-              <span className="sr-only">Open main menu</span>
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-6">
-                <span 
-                  className={`absolute h-0.5 w-6 bg-white transform transition-all duration-300 ease-out ${
-                    isMenuOpen ? "rotate-45 top-0" : "-translate-y-1.5"
-                  }`}
-                />
-                <span 
-                  className={`absolute h-0.5 w-6 bg-white transform transition-all duration-300 ease-out ${
-                    isMenuOpen ? "opacity-0" : "opacity-100"
-                  }`}
-                />
-                <span 
-                  className={`absolute h-0.5 w-6 bg-white transform transition-all duration-300 ease-out ${
-                    isMenuOpen ? "-rotate-45 top-0" : "translate-y-1.5"
-                  }`}
-                />
+              <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+                <Code2 className="w-5 h-5 text-white" />
               </div>
-            </button>
+              <span className="text-white font-semibold">Portfolio</span>
+            </motion.div>
+
+            <div className="flex items-center gap-3">
+              {/* Resume Download Button - Mobile */}
+              <motion.button
+                onClick={downloadResume}
+                className="p-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 text-white"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Download Resume"
+              >
+                <Download className="w-5 h-5" />
+              </motion.button>
+
+              {/* Hamburger Menu Button */}
+              <motion.button
+                className="relative w-10 h-10 focus:outline-none flex items-center justify-center"
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                whileTap={{ scale: 0.9 }}
+                aria-label="Toggle menu"
+              >
+                <motion.div
+                  animate={isMenuOpen ? "open" : "closed"}
+                  className="relative w-6 h-6"
+                >
+                  <motion.span
+                    className="absolute top-0 left-0 w-full h-0.5 bg-white rounded-full"
+                    variants={{
+                      closed: { top: "0%", rotate: 0 },
+                      open: { top: "45%", rotate: 45 }
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <motion.span
+                    className="absolute top-2.5 left-0 w-full h-0.5 bg-white rounded-full"
+                    variants={{
+                      closed: { opacity: 1 },
+                      open: { opacity: 0 }
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <motion.span
+                    className="absolute top-5 left-0 w-full h-0.5 bg-white rounded-full"
+                    variants={{
+                      closed: { top: "100%", rotate: 0 },
+                      open: { top: "45%", rotate: -45 }
+                    }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.div>
+              </motion.button>
+            </div>
           </div>
         </div>
       </motion.nav>
@@ -186,76 +245,134 @@ const Navbar = () => {
           className="fixed inset-0 z-40 md:hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
           onClick={() => setIsMenuOpen(false)}
         >
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-black/90 backdrop-blur-lg" />
         </motion.div>
       )}
 
       {/* Mobile Menu Content */}
       <motion.div
-        className={`fixed top-0 right-0 h-full w-64 z-50 md:hidden transform transition-transform duration-300 ease-out ${
+        className={`fixed top-0 right-0 h-full w-72 z-50 md:hidden transform transition-transform duration-300 ease-out ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
         initial={false}
       >
-        <div className="h-full bg-black/95 backdrop-blur-md border-l border-white/10 pt-20 px-6">
-          {/* Close button at the top right */}
+        <div className="h-full bg-gradient-to-b from-black via-neutral-900 to-black border-l border-white/10 pt-20 px-6 overflow-y-auto">
+          {/* Close button */}
           <button
             onClick={() => setIsMenuOpen(false)}
-            className="absolute top-6 right-6 text-white text-3xl hover:text-neutral-300 transition-colors focus:outline-none"
+            className="absolute top-6 right-6 text-white hover:text-neutral-300 transition-colors focus:outline-none"
             aria-label="Close menu"
           >
-            ×
+            <X className="w-6 h-6" />
           </button>
           
-          <ul className="space-y-8">
-            {navItems.map((section) => (
+          {/* Profile Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-center mb-8"
+          >
+            <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
+              <Code2 className="w-10 h-10 text-white" />
+            </div>
+            <h3 className="text-xl font-semibold text-white">Thejus Mohanan</h3>
+            <p className="text-neutral-400 text-sm">Frontend Developer</p>
+          </motion.div>
+
+          {/* Navigation Links */}
+          <ul className="space-y-2">
+            {navItems.map((item, index) => (
               <motion.li
-                key={section}
+                key={item.id}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: navItems.indexOf(section) * 0.1 }}
-                className={`text-lg font-medium hover:text-white transition-colors cursor-pointer flex flex-col ${
-                  activeSection === section ? "text-white font-semibold" : "text-neutral-300"
-                }`}
-                onClick={() => scrollToSection(section)}
+                transition={{ duration: 0.3, delay: 0.1 + (index * 0.1) }}
               >
-                {/* Capitalize for display only */}
-                {section.charAt(0).toUpperCase() + section.slice(1)}
-                {activeSection === section && (
-                  <motion.div 
-                    className="h-0.5 bg-white mt-1 w-8"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
+                <button
+                  onClick={() => scrollToSection(item.id)}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300 ${
+                    activeSection === item.id
+                      ? "bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-white border border-blue-500/30"
+                      : "text-neutral-300 hover:text-white hover:bg-white/5"
+                  }`}
+                >
+                  <div className={`p-2 rounded-lg ${
+                    activeSection === item.id 
+                      ? "bg-gradient-to-r from-blue-500 to-purple-500" 
+                      : "bg-neutral-800"
+                  }`}>
+                    {item.icon}
+                  </div>
+                  <span className="font-medium">{item.label}</span>
+                  {activeSection === item.id && (
+                    <motion.div
+                      className="ml-auto w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
+                </button>
               </motion.li>
             ))}
-            
-            {/* Resume Download Button in Mobile Menu */}
-            <motion.li
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.5 }}
-              className="pt-8"
-            >
-              <button
-                onClick={() => {
-                  downloadResume();
-                  setIsMenuOpen(false);
-                }}
-                className="w-full bg-white text-black px-4 py-3 rounded-lg hover:bg-gray-200 transition-colors font-medium text-center flex items-center justify-center gap-2"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Download Resume
-              </button>
-            </motion.li>
           </ul>
+
+          {/* Resume Download Button in Mobile Menu */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, delay: 0.5 }}
+            className="mt-8 pt-6 border-t border-white/10"
+          >
+            <button
+              onClick={() => {
+                downloadResume();
+                setIsMenuOpen(false);
+              }}
+              className="w-full group relative overflow-hidden px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium flex items-center justify-center gap-2"
+            >
+              {/* Button shine effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "100%" }}
+                transition={{ duration: 0.6 }}
+              />
+              <Download className="w-5 h-5" />
+              <span className="relative z-10">Download Resume</span>
+            </button>
+          </motion.div>
+
+          {/* Social Links */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="mt-8 pt-6 border-t border-white/10"
+          >
+            <p className="text-neutral-400 text-sm mb-4 text-center">Connect with me</p>
+            <div className="flex justify-center gap-4">
+              {[
+                { icon: "💼", label: "LinkedIn" },
+                { icon: "🐙", label: "GitHub" },
+                { icon: "📧", label: "Email" }
+              ].map((social, index) => (
+                <motion.button
+                  key={index}
+                  whileHover={{ y: -3 }}
+                  className="p-3 rounded-lg bg-neutral-800 hover:bg-neutral-700 transition-colors duration-300"
+                  aria-label={social.label}
+                >
+                  <span className="text-lg">{social.icon}</span>
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </motion.div>
     </>
