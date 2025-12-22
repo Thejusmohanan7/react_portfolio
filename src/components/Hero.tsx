@@ -64,7 +64,7 @@ const Hero = () => {
   // Social Media Icons Component with hover animation
   const GitHubIcon = ({ isHovered }: { isHovered: boolean }) => (
     <motion.svg
-      className="w-6 h-6"
+      className="w-5 h-5 sm:w-6 sm:h-6"
       fill="currentColor"
       viewBox="0 0 24 24"
       aria-hidden="true"
@@ -80,7 +80,7 @@ const Hero = () => {
 
   const LinkedInIcon = ({ isHovered }: { isHovered: boolean }) => (
     <motion.svg
-      className="w-6 h-6"
+      className="w-5 h-5 sm:w-6 sm:h-6"
       fill="currentColor"
       viewBox="0 0 24 24"
       aria-hidden="true"
@@ -96,7 +96,7 @@ const Hero = () => {
 
   const TwitterIcon = ({ isHovered }: { isHovered: boolean }) => (
     <motion.svg
-      className="w-6 h-6"
+      className="w-5 h-5 sm:w-6 sm:h-6"
       fill="currentColor"
       viewBox="0 0 24 24"
       aria-hidden="true"
@@ -122,7 +122,7 @@ const Hero = () => {
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           style={{ y: useTransform(scrollY, [0, 300], [0, 100]) }}
-          className="absolute top-1/4 left-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-20"
+          className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 bg-blue-500 rounded-full mix-blend-screen filter blur-3xl opacity-20"
           animate={{ 
             x: ["0%", "5%", "0%"],
             y: ["0%", "3%", "0%"]
@@ -135,7 +135,7 @@ const Hero = () => {
         />
         <motion.div
           style={{ y: useTransform(scrollY, [0, 300], [0, -100]) }}
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-3xl opacity-20"
+          className="absolute bottom-1/4 right-1/4 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-purple-500 rounded-full mix-blend-screen filter blur-3xl opacity-20"
           animate={{ 
             x: ["0%", "-5%", "0%"],
             y: ["0%", "-3%", "0%"]
@@ -149,7 +149,7 @@ const Hero = () => {
         />
         <motion.div
           style={{ y: useTransform(scrollY, [0, 300], [0, 50]) }}
-          className="absolute top-3/4 left-1/3 w-48 h-48 bg-cyan-500 rounded-full mix-blend-screen filter blur-3xl opacity-15"
+          className="absolute top-3/4 left-1/3 w-36 h-36 sm:w-40 sm:h-40 md:w-48 md:h-48 bg-cyan-500 rounded-full mix-blend-screen filter blur-3xl opacity-15"
           animate={{ 
             scale: [1, 1.2, 1],
             rotate: [0, 180, 360]
@@ -163,12 +163,12 @@ const Hero = () => {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 max-w-5xl px-6 text-center">
+      <div className="relative z-10 max-w-5xl px-4 sm:px-6 md:px-8 text-center">
         {/* Main Title with letter-by-letter hover animation */}
         <motion.div
           onMouseEnter={() => setIsNameHovered(true)}
           onMouseLeave={() => setIsNameHovered(false)}
-          className="cursor-pointer inline-block"
+          className="cursor-pointer inline-block px-2"
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
@@ -177,7 +177,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, ease: "easeOut" }}
-            className="text-4xl sm:text-6xl md:text-7xl font-semibold tracking-tight text-white"
+            className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight text-white leading-tight"
           >
             {animatedText.split("").map((letter, index) => (
               <motion.span
@@ -211,7 +211,7 @@ const Hero = () => {
             initial={{ width: 0 }}
             animate={{ width: isNameHovered ? "100%" : 0 }}
             transition={{ duration: 0.3 }}
-            className="h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mt-2 mx-auto"
+            className="h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mt-1 sm:mt-2 mx-auto"
           />
         </motion.div>
 
@@ -222,7 +222,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.2, ease: "easeOut" }}
           whileHover={{ scale: 1.02 }}
-          className="mt-6 text-base sm:text-lg md:text-xl text-neutral-400 leading-relaxed cursor-default"
+          className="mt-4 sm:mt-6 text-sm xs:text-base sm:text-lg md:text-xl text-neutral-400 leading-relaxed cursor-default px-2"
         >
           Front-End / Next.js Developer · React · TypeScript · Tailwind CSS
         </motion.p>
@@ -234,10 +234,10 @@ const Hero = () => {
           transition={{ duration: 0.9, delay: 0.4, ease: "easeOut" }}
           whileHover={{ 
             backgroundColor: "rgba(255, 255, 255, 0.05)",
-            padding: "1rem",
+            padding: "0.75rem",
             borderRadius: "0.5rem"
           }}
-          className="mt-8 max-w-2xl mx-auto text-sm sm:text-base text-neutral-500 p-4 transition-all duration-300 cursor-default"
+          className="mt-6 sm:mt-8 max-w-2xl mx-auto text-xs xs:text-sm sm:text-base text-neutral-500 p-3 sm:p-4 transition-all duration-300 cursor-default"
         >
           Skilled in building responsive, modern web applications with clean
           and maintainable code. Dedicated to delivering high-quality, scalable
@@ -249,11 +249,11 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
-          className="mt-12 flex flex-wrap justify-center gap-4"
+          className="mt-8 sm:mt-10 md:mt-12 flex flex-wrap justify-center gap-3 sm:gap-4 px-2"
         >
           <motion.button
             onClick={handleViewProjects}
-            className="px-8 py-3 bg-white text-black rounded-lg font-medium text-sm sm:text-base flex items-center gap-2 relative overflow-hidden group"
+            className="px-6 py-2.5 sm:px-8 sm:py-3 bg-white text-black rounded-lg font-medium text-xs xs:text-sm sm:text-base flex items-center gap-2 relative overflow-hidden group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -264,15 +264,15 @@ const Hero = () => {
               whileHover={{ x: "100%" }}
               transition={{ duration: 0.6 }}
             />
-            <svg className="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
             </svg>
-            <span className="relative z-10">View Projects</span>
+            <span className="relative z-10 whitespace-nowrap">View Projects</span>
           </motion.button>
           
           <motion.button
             onClick={handleContactMe}
-            className="px-8 py-3 border border-white text-white rounded-lg font-medium text-sm sm:text-base flex items-center gap-2 relative overflow-hidden group"
+            className="px-6 py-2.5 sm:px-8 sm:py-3 border border-white text-white rounded-lg font-medium text-xs xs:text-sm sm:text-base flex items-center gap-2 relative overflow-hidden group"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -281,10 +281,10 @@ const Hero = () => {
               className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg opacity-0 group-hover:opacity-100 blur transition duration-300"
             />
             <div className="absolute inset-0 bg-black rounded-lg group-hover:bg-transparent transition duration-300" />
-            <svg className="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            <span className="relative z-10">Contact Me</span>
+            <span className="relative z-10 whitespace-nowrap">Contact Me</span>
           </motion.button>
         </motion.div>
 
@@ -293,7 +293,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
-          className="mt-12 flex justify-center gap-8"
+          className="mt-8 sm:mt-10 md:mt-12 flex justify-center gap-6 sm:gap-8 px-2"
         >
           {[
             { name: 'github', icon: GitHubIcon, href: 'https://github.com' },
@@ -303,7 +303,7 @@ const Hero = () => {
               name: 'email', 
               component: ({ isHovered }: { isHovered: boolean }) => (
                 <motion.svg
-                  className="w-6 h-6"
+                  className="w-5 h-5 sm:w-6 sm:h-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -325,7 +325,7 @@ const Hero = () => {
               href={social.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-neutral-400 hover:text-white transition-colors duration-300 relative p-2"
+              className="text-neutral-400 hover:text-white transition-colors duration-300 relative p-1.5 sm:p-2"
               onMouseEnter={() => setHoveredIcon(social.name)}
               onMouseLeave={() => setHoveredIcon(null)}
               whileHover={{ y: -5 }}
@@ -357,17 +357,17 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1 }}
-          className="mt-12"
+          className="mt-8 sm:mt-10 md:mt-12 px-2"
         >
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.1 }}
-            className="text-neutral-500 text-sm mb-6 tracking-widest"
+            className="text-neutral-500 text-xs xs:text-sm mb-4 sm:mb-6 tracking-widest"
           >
             TECHNOLOGIES I WORK WITH
           </motion.p>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 max-w-3xl mx-auto">
             {['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Node.js', 'MongoDB', 'Framer Motion', 'Git'].map((tech, index) => (
               <motion.span
                 key={tech}
@@ -383,7 +383,7 @@ const Hero = () => {
                   backgroundColor: "rgba(59, 130, 246, 0.2)",
                   borderColor: "rgb(59, 130, 246)"
                 }}
-                className="px-4 py-2 bg-neutral-900/50 text-neutral-300 rounded-lg text-sm border border-neutral-800 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 cursor-default select-none"
+                className="px-3 py-1.5 xs:px-4 xs:py-2 bg-neutral-900/50 text-neutral-300 rounded-lg text-xs xs:text-sm border border-neutral-800 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-300 cursor-default select-none whitespace-nowrap"
               >
                 {tech}
               </motion.span>
@@ -397,11 +397,10 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-10 flex flex-col items-center text-neutral-500 cursor-pointer"
+        className="absolute bottom-6 sm:bottom-8 md:bottom-10 flex flex-col items-center text-neutral-500 cursor-pointer"
         onClick={() => window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' })}
         whileHover={{ y: 5 }}
       >
-       
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ 
@@ -409,12 +408,12 @@ const Hero = () => {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="w-6 h-10 border-2 border-neutral-500 rounded-full flex justify-center"
+          className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-neutral-500 rounded-full flex justify-center"
           whileHover={{ borderColor: "#ffffff", scale: 1.1 }}
         >
           <motion.div
             animate={{ 
-              y: [0, 12, 0],
+              y: [0, 8, 0],
               opacity: [1, 0.5, 1]
             }}
             transition={{ 
@@ -422,7 +421,7 @@ const Hero = () => {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="w-1 h-3 bg-neutral-500 rounded-full mt-2"
+            className="w-1 h-2 xs:h-3 bg-neutral-500 rounded-full mt-1.5 sm:mt-2"
             whileHover={{ backgroundColor: "#ffffff" }}
           />
         </motion.div>
