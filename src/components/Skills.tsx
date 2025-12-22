@@ -41,8 +41,7 @@ const Skills = () => {
   const opacityBg = useTransform(scrollY, [0, 500], [1, 0.6]);
   const scaleBg = useTransform(scrollY, [0, 500], [1, 1.05]);
 
-  // State for hover effects
-  const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+  // State for hover effects - only hoveredCategory is used
   const [hoveredCategory, setHoveredCategory] = useState<number | null>(null);
 
   return (
@@ -208,8 +207,6 @@ const Skills = () => {
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: (catIndex * 0.1) + (skillIndex * 0.05) }}
-                      onMouseEnter={() => setHoveredSkill(`${catIndex}-${skillIndex}`)}
-                      onMouseLeave={() => setHoveredSkill(null)}
                       whileHover={{ 
                         scale: 1.05,
                         y: -3,

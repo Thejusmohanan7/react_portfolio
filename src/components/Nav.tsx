@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Download, Menu, X, Home, User, Code2, Mail } from "lucide-react";
+import { Download,X, Home, User, Code2, Mail } from "lucide-react";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
