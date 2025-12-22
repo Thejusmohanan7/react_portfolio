@@ -4,23 +4,40 @@ interface ExperienceItem {
   role: string;
   company: string;
   period: string;
-  description: string;
+  description: string[];
 }
 
 const experiences: ExperienceItem[] = [
   {
-    role: "Frontend Developer",
-    company: "ABC Tech Solutions",
-    period: "Jan 2024 - Present",
-    description:
-      "Developed responsive web applications using React, TypeScript, and Tailwind CSS. Focused on accessibility, performance, and scalable UI components.",
+    role: "Front End Developer",
+    company: "Hippozxtech Solutions",
+    period: "Feb 2025 – Present",
+    description: [
+      "Built full-stack web apps using Next.js, React, Node.js, MongoDB.",
+      "Implemented REST APIs, authentication, and secure DB operations.",
+      "Improved performance, responsiveness, and accessibility.",
+      "Deployed apps using Git, CI/CD pipelines, and Vercel.",
+    ],
   },
   {
-    role: "React Developer Intern",
-    company: "XYZ Labs",
-    period: "Jun 2023 - Dec 2023",
-    description:
-      "Contributed to internal tools using React and Next.js, implementing reusable components and improving front-end performance.",
+    role: "Customer Support Executive",
+    company: "Takyon",
+    period: "2022 – 2023",
+    description: [
+      "Resolved customer issues with 95% success rate.",
+      "Documented frequent technical issues to improve workflow.",
+      "Reduced escalations by 30%.",
+    ],
+  },
+  {
+    role: "Software Developer Intern",
+    company: "Shiash",
+    period: "2021, 5 months",
+    description: [
+      "Developed and debugged Django applications.",
+      "Participated in code reviews and quality improvements.",
+      "Assisted in deployments and issue fixes.",
+    ],
   },
 ];
 
@@ -44,7 +61,7 @@ const Experience = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight mb-8"
         >
-          Experience
+          Work Experience
         </motion.h2>
 
         <div className="space-y-12">
@@ -59,10 +76,14 @@ const Experience = () => {
             >
               <span className="absolute -left-3 top-1.5 w-3 h-3 rounded-full bg-white" />
               <h3 className="text-xl sm:text-2xl font-semibold">{exp.role}</h3>
-              <p className="text-sm text-neutral-400">{exp.company} · {exp.period}</p>
-              <p className="mt-2 text-neutral-500 leading-relaxed text-sm sm:text-base">
-                {exp.description}
+              <p className="text-sm text-neutral-400">
+                {exp.company} · {exp.period}
               </p>
+              <ul className="mt-2 text-neutral-500 leading-relaxed text-sm sm:text-base list-disc list-inside space-y-1">
+                {exp.description.map((desc, idx) => (
+                  <li key={idx}>{desc}</li>
+                ))}
+              </ul>
             </motion.div>
           ))}
         </div>
