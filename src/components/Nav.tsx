@@ -109,17 +109,8 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-6 py-4">
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center justify-between">
-            {/* Logo/Brand */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-2"
-            >
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
-                <Code2 className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-white font-semibold text-lg">Portfolio</span>
-            </motion.div>
+            {/* Empty space on left side where logo used to be */}
+            <div className="w-0"></div>
 
             {/* Centered Navigation Links */}
             <div className="flex items-center gap-1 bg-black/30 backdrop-blur-sm rounded-full p-1 border border-white/10">
@@ -173,17 +164,8 @@ const Navbar = () => {
 
           {/* Mobile Navigation */}
           <div className="flex md:hidden items-center justify-between">
-            {/* Logo/Brand */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="flex items-center gap-2"
-            >
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center">
-                <Code2 className="w-5 h-5 text-white" />
-              </div>
-              <span className="text-white font-semibold">Portfolio</span>
-            </motion.div>
+            {/* Empty space on left side - logo removed */}
+            <div className="w-0"></div>
 
             <div className="flex items-center gap-3">
               {/* Resume Download Button - Mobile */}

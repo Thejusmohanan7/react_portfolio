@@ -6,26 +6,85 @@ interface Project {
   description: string;
   url: string;
   tech: string[];
+  built: string[];
+  challenges: string[];
+  features: string[];
 }
 
 const projects: Project[] = [
   {
     name: "Homora Interiors",
-    description: "Responsive interior design website using Next.js & Tailwind CSS.",
+    description: "A premium interior design agency website showcasing luxury home interiors and design services.",
     url: "https://next-js-slxb.vercel.app/home",
-    tech: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion"]
+    tech: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion", "Responsive Design"],
+    built: [
+      "Complete interior design agency website with service pages",
+      "Gallery showcase with categorized interior designs",
+      "Contact and inquiry system",
+      "SEO-optimized blog section for design tips"
+    ],
+    challenges: [
+      "Creating smooth animations for image galleries without performance issues",
+      "Implementing responsive layouts for complex interior design showcases",
+      "Optimizing high-resolution interior images for fast loading",
+      "Building an intuitive navigation for portfolio categories"
+    ],
+    features: [
+      "Responsive gallery with masonry layout",
+      "Smooth page transitions with Framer Motion",
+      "Contact form with email integration",
+      "Blog with markdown support",
+    ]
   },
   {
     name: "Own Media – Wedding Photography",
-    description: "Photography portfolio created using React & Next.js.",
+    description: "A wedding photography portfolio website capturing love stories with elegant visual storytelling.",
     url: "https://own-media-phi.vercel.app",
-    tech: ["React", "Next.js", "CSS Modules", "Responsive Design"]
+    tech: ["React", "Next.js", "CSS Modules", "Responsive Design", "Image Optimization"],
+    built: [
+      "Wedding photography portfolio with categorized galleries",
+      "Client testimonial section",
+      "Booking and inquiry system",
+      "Blog for sharing wedding photography tips"
+    ],
+    challenges: [
+      "Optimizing high-resolution wedding photos for web without quality loss",
+      "Creating emotional storytelling through visual hierarchy",
+      "Implementing lazy loading for image-heavy galleries",
+      "Designing mobile-responsive portfolio layouts"
+    ],
+    features: [
+      "Image optimization with Next.js Image component",
+      "Parallax scrolling effects",
+      "Client testimonial carousel",
+      "Contact form with file upload for inquiries",
+      "Portfolio filtering by wedding categories"
+    ]
   },
   {
     name: "Portfolio (HTML/Tailwind)",
-    description: "Static responsive personal portfolio website.",
+    description: "A static personal portfolio website demonstrating clean design and responsive layouts.",
     url: "https://portv1-five.vercel.app",
-    tech: ["HTML", "Tailwind CSS", "JavaScript", "Vercel"]
+    tech: ["HTML", "Tailwind CSS", "JavaScript", "Vercel", "Responsive Design"],
+    built: [
+      "Personal portfolio showcasing skills and projects",
+      "Responsive design for all screen sizes",
+      "Contact section with form validation",
+      "Project showcase with live previews"
+    ],
+    challenges: [
+      "Achieving pixel-perfect responsive design without CSS frameworks",
+      "Implementing smooth scrolling navigation",
+      "Creating custom animations with vanilla JavaScript",
+      "Optimizing for Core Web Vitals"
+    ],
+    features: [
+      "Mobile-first responsive design",
+      "Custom CSS animations",
+      "Form validation with JavaScript",
+      "Dark theme implementation",
+      "Fast loading with minimal dependencies"
+    ]
   },
 ];
 
@@ -35,8 +94,17 @@ const Projects = () => {
   const opacityBg = useTransform(scrollY, [0, 500], [1, 0.6]);
   const scaleBg = useTransform(scrollY, [0, 500], [1, 1.05]);
 
-  // State for hover effect
+  // State for hover effect and expanded details
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [expandedProject, setExpandedProject] = useState<number | null>(null);
+
+  const toggleDetails = (index: number) => {
+    if (expandedProject === index) {
+      setExpandedProject(null);
+    } else {
+      setExpandedProject(index);
+    }
+  };
 
   return (
     <section id="projects" className="relative min-h-screen bg-black text-white flex flex-col items-center overflow-hidden">
@@ -136,18 +204,15 @@ const Projects = () => {
             transition={{ delay: 0.4 }}
             className="text-lg text-neutral-400 max-w-2xl mx-auto"
           >
-            A selection of recent projects showcasing my frontend development skills
+            A selection of recent projects showcasing my frontend development skills and problem-solving abilities
           </motion.p>
         </motion.div>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <motion.a
+            <motion.div
               key={index}
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 30, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -199,6 +264,110 @@ const Projects = () => {
                   >
                     {project.description}
                   </motion.p>
+
+                  {/* Expand Details Button */}
+                  <motion.button
+                    onClick={() => toggleDetails(index)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center gap-2 text-blue-400 text-sm font-medium mb-4"
+                  >
+                    {expandedProject === index ? "Show Less" : "View Details"}
+                    <motion.svg
+                      animate={{ rotate: expandedProject === index ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </motion.svg>
+                  </motion.button>
+
+                  {/* Expanded Details */}
+                  {expandedProject === index && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="space-y-4 overflow-hidden"
+                    >
+                      {/* What I Built */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-white mb-2 flex items-center gap-2">
+                          <svg className="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                          </svg>
+                          What I Built
+                        </h4>
+                        <ul className="space-y-2">
+                          {project.built.map((item, i) => (
+                            <motion.li
+                              key={i}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: i * 0.1 }}
+                              className="text-xs text-neutral-300 flex items-start gap-2"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-blue-500 mt-1.5 flex-shrink-0" />
+                              {item}
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Challenges Solved */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-white mb-2 flex items-center gap-2">
+                          <svg className="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          </svg>
+                          Challenges Solved
+                        </h4>
+                        <ul className="space-y-2">
+                          {project.challenges.map((item, i) => (
+                            <motion.li
+                              key={i}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: i * 0.1 }}
+                              className="text-xs text-neutral-300 flex items-start gap-2"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-yellow-500 mt-1.5 flex-shrink-0" />
+                              {item}
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Features */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-white mb-2 flex items-center gap-2">
+                          <svg className="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                          </svg>
+                          Key Features
+                        </h4>
+                        <ul className="space-y-2">
+                          {project.features.map((item, i) => (
+                            <motion.li
+                              key={i}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ delay: i * 0.1 }}
+                              className="text-xs text-neutral-300 flex items-start gap-2"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-purple-500 mt-1.5 flex-shrink-0" />
+                              {item}
+                            </motion.li>
+                          ))}
+                        </ul>
+                      </div>
+                    </motion.div>
+                  )}
                 </div>
 
                 {/* Tech Stack */}
@@ -235,18 +404,22 @@ const Projects = () => {
                       {project.url.replace('https://', '')}
                     </motion.span>
                     
-                    <motion.div
+                    <motion.a
+                      href={project.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => e.stopPropagation()}
                       animate={{ 
                         scale: hoveredProject === index ? 1.2 : 1,
                         x: hoveredProject === index ? 5 : 0
                       }}
-                      className="flex items-center gap-2 text-blue-400"
+                      className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
                     >
-                      <span className="text-sm font-medium">View Project</span>
+                      <span className="text-sm font-medium">Live Demo</span>
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
-                    </motion.div>
+                    </motion.a>
                   </div>
                 </div>
 
@@ -265,11 +438,11 @@ const Projects = () => {
                   className="h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 absolute bottom-0 left-0"
                 />
               </motion.div>
-            </motion.a>
+            </motion.div>
           ))}
         </div>
 
-        {/* View More Projects (Optional) */}
+        {/* View More Projects */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -278,7 +451,7 @@ const Projects = () => {
           className="mt-16 text-center"
         >
           <motion.a
-            href="https://github.com"
+            href="https://github.com/Thejusmohanan7"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-neutral-400 hover:text-white transition-colors duration-300 group"
