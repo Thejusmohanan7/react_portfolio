@@ -1,5 +1,11 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState } from "react";
+import { 
+  GraduationCap,
+  BookOpen,
+  School,
+  Info
+} from "lucide-react";
 
 const education = [
   {
@@ -7,21 +13,21 @@ const education = [
     institute: "KMEA Engineering College, Aluva",
     period: "2018–2021",
     description: "Bachelor of Technology in Computer Science",
-    icon: "🎓"
+    icon: <GraduationCap className="w-8 h-8" />
   },
   {
     degree: "Higher Secondary",
     institute: "SNV SKT HSS",
     period: "2015–2017",
     description: "Computer Science Stream",
-    icon: "📚"
+    icon: <BookOpen className="w-8 h-8" />
   },
   {
     degree: "High School",
     institute: "Samooha HS",
     period: "2014–2015",
     description: "SSLC Completion",
-    icon: "🏫"
+    icon: <School className="w-8 h-8" />
   }
 ];
 
@@ -175,7 +181,7 @@ const Education = () => {
                     initial={{ scale: 0, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute -left-13 top-5 w-9 h-9  opacity-20 blur-sm hidden md:block"
+                    className="absolute -left-13 top-5 w-9 h-9 bg-blue-500 opacity-20 blur-sm hidden md:block"
                   />
                 )}
 
@@ -197,7 +203,7 @@ const Education = () => {
                           rotate: hoveredIndex === index ? [0, 5, -5, 0] : 0
                         }}
                         transition={{ duration: 0.3 }}
-                        className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center text-3xl"
+                        className="w-16 h-16 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center text-blue-400"
                       >
                         {edu.icon}
                       </motion.div>
@@ -254,7 +260,6 @@ const Education = () => {
                           className="mt-6 pt-6 border-t border-neutral-800"
                         >
                           <div className="flex items-center gap-4">
-  
                             <div className="flex items-center gap-2">
                               <div className="w-2 h-2 rounded-full bg-blue-500" />
                               <span className="text-sm text-neutral-400">Computer Science Focus</span>
@@ -287,9 +292,7 @@ const Education = () => {
           className="mt-16 max-w-3xl mx-auto text-center"
         >
           <div className="inline-flex items-center gap-2 text-neutral-400">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <Info className="w-5 h-5" />
             <span>Continuously learning through online courses and self-study</span>
           </div>
         </motion.div>
