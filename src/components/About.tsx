@@ -1,4 +1,12 @@
 import { motion, useScroll, useTransform } from "framer-motion";
+import { 
+  GraduationCap,
+  Target,
+  Users,
+  TrendingUp,
+  Brain,
+  Palette
+} from "lucide-react";
 
 const About = () => {
   const { scrollY } = useScroll();
@@ -105,13 +113,13 @@ const About = () => {
             transition={{ delay: 0.4 }}
             className="text-lg text-neutral-400 max-w-2xl mx-auto"
           >
-            Get to know more about my journey, passion, and what drives me
+            Get to know my journey, what I'm looking for, and what excites me about development
           </motion.p>
         </motion.div>
 
         {/* Main About Content */}
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column - Introduction */}
+          {/* Left Column - My Learning Journey */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -131,7 +139,7 @@ const About = () => {
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                 className="w-6 h-6 rounded-full border-2 border-blue-400"
               />
-              My Journey
+              My Learning Journey
             </motion.h3>
 
             <motion.div
@@ -141,35 +149,22 @@ const About = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="space-y-4"
             >
-              <motion.p
-                whileHover={{ 
-                  backgroundColor: "rgba(255, 255, 255, 0.05)",
-                  padding: "1rem",
-                  borderRadius: "0.5rem"
-                }}
-                className="text-neutral-300 text-lg leading-relaxed p-4 transition-all duration-300 cursor-default"
-              >
-                I'm a passionate Front-End Developer with a strong focus on creating 
-                modern, responsive web applications. My journey in web development 
-                started with a curiosity about how websites work, which quickly 
-                evolved into a deep passion for building digital experiences.
-              </motion.p>
+              <p className="text-neutral-300 text-lg leading-relaxed cursor-default">
+                My coding journey started with simple HTML pages, fascinated by how websites worked. 
+                What began as curiosity turned into late nights debugging CSS and celebrating when 
+                animations finally worked. There's something magical about watching code come to life 
+                on screen.
+              </p>
 
-              <motion.p
-                whileHover={{ 
-                  backgroundColor: "rgba(255, 255, 255, 0.05)",
-                  padding: "1rem",
-                  borderRadius: "0.5rem"
-                }}
-                className="text-neutral-300 text-lg leading-relaxed p-4 transition-all duration-300 cursor-default"
-              >
-                What excites me most about frontend development is the perfect blend 
-                of creativity and logic - transforming designs into functional, 
-                performant applications that users love to interact with.
-              </motion.p>
+              <p className="text-neutral-300 text-lg leading-relaxed cursor-default">
+                Every project taught me something new - whether it was figuring out responsive design 
+                for mobile devices or learning how state management works in React. The "aha!" moments 
+                when concepts click are what keep me going. I'm always the developer who asks "why" 
+                and "how can this be better?"
+              </p>
             </motion.div>
 
-            {/* Personal Values */}
+            {/* What Drives Me */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -179,16 +174,16 @@ const About = () => {
             >
               <h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
-                What I Value
+                What Keeps Me Going
               </h4>
               <div className="space-y-3">
                 {[
-                  "Clean, maintainable code that scales",
-                  "User-centered design and experience",
-                  "Continuous learning and adaptation",
-                  "Collaboration and knowledge sharing"
+                  "That satisfying feeling when a complex feature works perfectly",
+                  "Seeing users enjoy something I built",
+                  "Learning from mistakes - every bug is a lesson",
+                  "Collaborating with others and growing together"
                 ].map((value, index) => (
                   <motion.div
                     key={index}
@@ -213,7 +208,7 @@ const About = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Column - Philosophy & Approach */}
+          {/* Right Column - Roles & Problem Solving */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -233,7 +228,7 @@ const About = () => {
                 transition={{ duration: 2, repeat: Infinity }}
                 className="w-6 h-6 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"
               />
-              My Approach
+              Looking Forward
             </motion.h3>
 
             <motion.div
@@ -243,34 +238,22 @@ const About = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
               className="space-y-4"
             >
-              <motion.p
-                whileHover={{ 
-                  backgroundColor: "rgba(255, 255, 255, 0.05)",
-                  padding: "1rem",
-                  borderRadius: "0.5rem"
-                }}
-                className="text-neutral-300 text-lg leading-relaxed p-4 transition-all duration-300 cursor-default"
-              >
-                I believe in building web applications that are not only visually 
-                appealing but also performant, accessible, and easy to maintain. 
-                Every line of code I write is with scalability and user experience in mind.
-              </motion.p>
+              <p className="text-neutral-300 text-lg leading-relaxed cursor-default">
+                <span className="font-medium text-white">Roles I'm excited about:</span> I'm looking for 
+                Frontend Developer roles where I can build products that people actually use. 
+                I thrive in teams that value clean code, user experience, and continuous improvement. 
+                Junior positions or apprenticeships are perfect - I want to grow with a team.
+              </p>
 
-              <motion.p
-                whileHover={{ 
-                  backgroundColor: "rgba(255, 255, 255, 0.05)",
-                  padding: "1rem",
-                  borderRadius: "0.5rem"
-                }}
-                className="text-neutral-300 text-lg leading-relaxed p-4 transition-all duration-300 cursor-default"
-              >
-                In today's fast-evolving tech landscape, I stay updated with the 
-                latest trends and best practices, ensuring that the solutions I 
-                build are modern, efficient, and future-proof.
-              </motion.p>
+              <p className="text-neutral-300 text-lg leading-relaxed cursor-default">
+                <span className="font-medium text-white">Real-world problem solving:</span> What gets me 
+                out of bed is solving actual problems. Like when I built Homora Interiors and helped 
+                showcase their designs online, or created Own Media to help photographers share their 
+                work. I love building things that make someone's day easier or more beautiful.
+              </p>
             </motion.div>
 
-            {/* Current Focus */}
+            {/* What I'm Looking For */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -280,19 +263,19 @@ const About = () => {
             >
               <h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
                 <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
-                Current Focus
+                What I'm Looking For
               </h4>
               <div className="flex flex-wrap gap-3">
                 {[
-                  "React Ecosystem",
-                  "Next.js 14+",
-                  "TypeScript",
-                  "Performance",
-                  "Accessibility",
-                  "Animation"
-                ].map((focus, index) => (
+                  { text: "Mentorship", icon: <GraduationCap className="w-4 h-4" />, color: "text-blue-400" },
+                  { text: "Real Impact", icon: <Target className="w-4 h-4" />, color: "text-red-400" },
+                  { text: "Collaboration", icon: <Users className="w-4 h-4" />, color: "text-green-400" },
+                  { text: "Growth", icon: <TrendingUp className="w-4 h-4" />, color: "text-purple-400" },
+                  { text: "Learning", icon: <Brain className="w-4 h-4" />, color: "text-yellow-400" },
+                  { text: "Creativity", icon: <Palette className="w-4 h-4" />, color: "text-pink-400" }
+                ].map((item, index) => (
                   <motion.span
                     key={index}
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -305,9 +288,12 @@ const About = () => {
                       backgroundColor: "rgba(147, 51, 234, 0.2)",
                       borderColor: "rgb(147, 51, 234)"
                     }}
-                    className="px-4 py-2 text-sm bg-neutral-900 text-neutral-300 rounded-full border border-neutral-800 transition-all duration-300 cursor-default select-none"
+                    className="px-4 py-2 text-sm bg-neutral-900 text-neutral-300 rounded-full border border-neutral-800 transition-all duration-300 cursor-default select-none flex items-center gap-2"
                   >
-                    {focus}
+                    <span className={`${item.color}`}>
+                      {item.icon}
+                    </span>
+                    <span>{item.text}</span>
                   </motion.span>
                 ))}
               </div>
@@ -315,30 +301,41 @@ const About = () => {
           </motion.div>
         </div>
 
-        {/* Quote Section */}
+        {/* Human Touch Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, delay: 0.9 }}
-          className="mt-20 text-center"
+          className="mt-16 text-center"
         >
           <div className="max-w-3xl mx-auto">
-            <motion.div
-              animate={{ rotate: [0, 10, -10, 0] }}
-              transition={{ duration: 4, repeat: Infinity, repeatDelay: 5 }}
-              className="text-4xl text-blue-400 mb-4"
-            >
-              "
-            </motion.div>
+            
             <motion.p
               whileHover={{ scale: 1.02 }}
-              className="text-xl italic text-neutral-300 mb-4 cursor-default"
+              className="text-xl text-neutral-300 mb-4 cursor-default italic"
             >
-              Great web experiences come from the perfect balance of 
-              aesthetics, performance, and functionality.
+              "I believe the best code comes from understanding people, not just computers. 
+              That's why I focus on building things that are both technically sound and 
+              genuinely useful."
             </motion.p>
-            <div className="h-0.5 w-32 bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto opacity-50" />
+            
+            {/* Fun Fact */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 1.1 }}
+              className="mt-8 p-4 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl border border-blue-500/20 max-w-md mx-auto"
+            >
+              <p className="text-neutral-300 text-sm flex items-center justify-center gap-2">
+                <span className="text-blue-400">💡 Fun fact:</span> 
+                My first website was a fan page for my favorite football team - 
+                complete with blinking text and auto-playing background music!
+              </p>
+            </motion.div>
+            
+            <div className="h-0.5 w-32 bg-gradient-to-r from-transparent via-blue-500 to-transparent mx-auto opacity-50 mt-6" />
           </div>
         </motion.div>
       </motion.div>
