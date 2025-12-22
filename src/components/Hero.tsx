@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState, useEffect } from "react";
+import { Calendar, CheckCircle } from "lucide-react";
 
 const Hero = () => {
   const { scrollY } = useScroll();
@@ -227,22 +228,47 @@ const Hero = () => {
           Front-End / Next.js Developer · React · TypeScript · Tailwind CSS
         </motion.p>
 
-        {/* Description with fade-in */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.9, delay: 0.4, ease: "easeOut" }}
-          whileHover={{ 
-            backgroundColor: "rgba(255, 255, 255, 0.05)",
-            padding: "0.75rem",
-            borderRadius: "0.5rem"
-          }}
-          className="mt-6 sm:mt-8 max-w-2xl mx-auto text-xs xs:text-sm sm:text-base text-neutral-500 p-3 sm:p-4 transition-all duration-300 cursor-default"
+        {/* Value-Driven One-Liner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="mt-4"
         >
-          Skilled in building responsive, modern web applications with clean
-          and maintainable code. Dedicated to delivering high-quality, scalable
-          solutions in Agile environments.
-        </motion.p>
+          <motion.p
+            whileHover={{ scale: 1.02 }}
+            className="text-lg sm:text-xl text-white font-medium bg-gradient-to-r from-blue-500/20 to-purple-500/20 px-6 py-3 rounded-full inline-block border border-blue-500/30 cursor-default"
+          >
+            I build fast, scalable, and visually engaging web experiences.
+          </motion.p>
+        </motion.div>
+
+        {/* Availability Badge */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-6 flex flex-col items-center gap-2"
+        >
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 border border-green-500/30 rounded-full"
+          >
+            <CheckCircle className="w-4 h-4 text-green-400" />
+            <span className="text-sm font-medium text-white">Open to Frontend / Next.js Roles</span>
+          </motion.div>
+          
+          {/* Updated Timestamp */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="flex items-center gap-1 text-xs text-neutral-500"
+          >
+            <Calendar className="w-3 h-3" />
+            <span>Updated — {new Date().getFullYear()}</span>
+          </motion.div>
+        </motion.div>
 
         {/* CTA Buttons with hover animations */}
         <motion.div
@@ -392,40 +418,7 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Enhanced Scroll Indicator with animation */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-6 sm:bottom-8 md:bottom-10 flex flex-col items-center text-neutral-500 cursor-pointer"
-        onClick={() => window.scrollBy({ top: window.innerHeight * 0.8, behavior: 'smooth' })}
-        whileHover={{ y: 5 }}
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ 
-            duration: 1.5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="w-5 h-8 sm:w-6 sm:h-10 border-2 border-neutral-500 rounded-full flex justify-center"
-          whileHover={{ borderColor: "#ffffff", scale: 1.1 }}
-        >
-          <motion.div
-            animate={{ 
-              y: [0, 8, 0],
-              opacity: [1, 0.5, 1]
-            }}
-            transition={{ 
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="w-1 h-2 xs:h-3 bg-neutral-500 rounded-full mt-1.5 sm:mt-2"
-            whileHover={{ backgroundColor: "#ffffff" }}
-          />
-        </motion.div>
-      </motion.div>
+      
     </section>
   );
 };

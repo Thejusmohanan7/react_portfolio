@@ -11,7 +11,7 @@ const education = [
   {
     degree: "B.Tech",
     institute: "KMEA Engineering College, Aluva",
-    period: "2018–2021",
+    period: "2017–2021",
     description: "Bachelor of Technology in Computer Science",
     icon: <GraduationCap className="w-8 h-8" />
   },

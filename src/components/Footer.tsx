@@ -339,18 +339,7 @@ const Footer = () => {
             </div>
 
             {/* Visitor Counter */}
-            <div className="text-center lg:text-right">
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="inline-flex items-center gap-3 px-4 py-3 rounded-xl bg-neutral-900/50 border border-neutral-800"
-              >
-                <Globe className="w-5 h-5 text-green-400" />
-                <div>
-                  <p className="text-xs text-neutral-400">Live Visitors</p>
-                  <p className="text-lg font-semibold text-white">1,234+</p>
-                </div>
-              </motion.div>
-            </div>
+           
           </motion.div>
         </div>
 
