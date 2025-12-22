@@ -111,7 +111,7 @@ const Hero = () => {
   );
 
   return (
-    <section id="home" className="relative min-h-screen pt-10 flex items-center justify-center overflow-hidden bg-black">
+    <section id="home" className="relative min-h-screen pt-14 flex items-center justify-center overflow-hidden bg-black">
       {/* Animated Background with scroll effects */}
       <motion.div
         style={{ opacity: opacityBg, scale: scaleBg }}
