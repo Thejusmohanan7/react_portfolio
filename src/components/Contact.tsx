@@ -14,7 +14,11 @@ import {
   User,
   MessageSquare,
   Clock,
-  Shield} from "lucide-react";
+  Shield,
+  Briefcase,
+  Globe,
+  Building
+} from "lucide-react";
 
 const contact = {
   name: "Thejus Mohanan",
@@ -122,7 +126,7 @@ const Contact = () => {
         style={{ y: yContent }}
         className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 w-full"
       >
-        {/* Section Header with Animation */}
+        {/* Section Header with Clear CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -138,16 +142,27 @@ const Contact = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="hidden sm:block h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 sm:w-16 md:w-20"
             />
-            <motion.h2
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              whileHover={{ scale: 1.02 }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight px-2"
-            >
-              Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Touch</span>
-            </motion.h2>
+            <div>
+              <motion.h2
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                whileHover={{ scale: 1.02 }}
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight px-2 mb-4"
+              >
+                Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Build</span> Something Together
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+                className="text-base sm:text-lg text-neutral-400 max-w-2xl mx-auto px-4"
+              >
+                Have a project in mind? Let's collaborate and create something amazing
+              </motion.p>
+            </div>
             <motion.div
               initial={{ width: 0 }}
               whileInView={{ width: "100%" }}
@@ -157,15 +172,32 @@ const Contact = () => {
             />
           </div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+          {/* Availability Badges */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="text-base sm:text-lg text-neutral-400 max-w-2xl mx-auto px-4"
+            transition={{ delay: 0.6 }}
+            className="flex flex-wrap justify-center gap-3 sm:gap-4 mt-8"
           >
-            Let's connect! I'm open to discussing opportunities, collaborations, or just chatting about tech.
-          </motion.p>
+            {[
+              { label: "Remote Work", icon: <Globe className="w-4 h-4" />, color: "bg-blue-500/20 border-blue-500/30 text-blue-400" },
+              { label: "Full-time", icon: <Building className="w-4 h-4" />, color: "bg-green-500/20 border-green-500/30 text-green-400" }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.7 + (index * 0.1) }}
+                whileHover={{ scale: 1.05, y: -3 }}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full ${item.color} border text-sm font-medium`}
+              >
+                {item.icon}
+                {item.label}
+              </motion.div>
+            ))}
+          </motion.div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 px-4 sm:px-0">
@@ -193,6 +225,24 @@ const Contact = () => {
                 </div>
                 <h3 className="text-xl sm:text-2xl font-semibold">{contact.name}</h3>
                 <p className="text-neutral-400 mt-2 text-sm sm:text-base">{contact.role}</p>
+                
+                {/* Location & Availability */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="flex items-center justify-center gap-3 mt-4"
+                >
+                  <div className="flex items-center gap-1 text-sm text-neutral-400">
+                    <MapPin className="w-4 h-4" />
+                    <span>{contact.location}</span>
+                  </div>
+                  <div className="flex items-center gap-1 text-sm text-green-400">
+                    <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    <span>Available</span>
+                  </div>
+                </motion.div>
               </div>
 
               {/* Contact Details */}
@@ -293,9 +343,19 @@ const Contact = () => {
                 <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500 animate-pulse" />
                 <h4 className="text-base sm:text-lg font-semibold">Currently Available</h4>
               </div>
-              <div className="flex items-start gap-2 text-neutral-300 text-xs sm:text-sm">
-                <Clock className="w-3 h-3 sm:w-4 sm:h-4 mt-0.5 flex-shrink-0" />
-                <span>Open to new opportunities. Response time: Usually within 24 hours.</span>
+              <div className="space-y-3">
+                <div className="flex items-start gap-2 text-neutral-300 text-xs sm:text-sm">
+                  <Clock className="w-3 h-3 sm:w-4 sm:h-4 mt-0.5 flex-shrink-0" />
+                  <span>Open to new opportunities. Response time: Usually within 24 hours.</span>
+                </div>
+                <div className="flex items-start gap-2 text-neutral-300 text-xs sm:text-sm">
+                  <Globe className="w-3 h-3 sm:w-4 sm:h-4 mt-0.5 flex-shrink-0 text-blue-400" />
+                  <span>Open to <strong>Remote</strong> positions worldwide or <strong>On-site</strong> in Kerala/India</span>
+                </div>
+                <div className="flex items-start gap-2 text-neutral-300 text-xs sm:text-sm">
+                  <Briefcase className="w-3 h-3 sm:w-4 sm:h-4 mt-0.5 flex-shrink-0 text-green-400" />
+                  <span>Seeking  <strong>Junior</strong> or <strong>Full-time</strong> roles</span>
+                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -318,7 +378,7 @@ const Contact = () => {
                 <MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400" />
                 <div>
                   <h3 className="text-xl sm:text-2xl font-semibold">Send me a message</h3>
-                  <p className="text-neutral-400 text-sm sm:text-base">Let's start a conversation</p>
+                  <p className="text-neutral-400 text-sm sm:text-base">Let's discuss your project or opportunity</p>
                 </div>
               </div>
 
@@ -326,7 +386,7 @@ const Contact = () => {
                 {[
                   { name: "name", label: "Your Name", icon: <User className="w-4 h-4" />, placeholder: "John Doe" },
                   { name: "email", label: "Your Email", icon: <Mail className="w-4 h-4" />, placeholder: "john@example.com" },
-                  { name: "message", label: "Your Message", icon: <MessageSquare className="w-4 h-4" />, placeholder: "Hi Thejus, I'd like to discuss..." }
+                  { name: "message", label: "Your Message", icon: <MessageSquare className="w-4 h-4" />, placeholder: "Hi Thejus, I have a project idea I'd like to discuss..." }
                 ].map((field) => (
                   <div key={field.name}>
                     <label className="block text-sm font-medium text-neutral-300 mb-2 flex items-center gap-2">
@@ -394,7 +454,7 @@ const Contact = () => {
                     ) : (
                       <>
                         <Send className="w-4 h-4 sm:w-5 sm:h-5" />
-                        Send Message
+                        Let's Build Together
                       </>
                     )}
                   </span>
@@ -416,7 +476,7 @@ const Contact = () => {
               className="mt-4 sm:mt-6 grid grid-cols-2 gap-3 sm:gap-4"
             >
               <motion.a
-                href={`mailto:${contact.email}?subject=Let's Connect`}
+                href={`mailto:${contact.email}?subject=Let's Build Something Together`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="p-3 sm:p-4 text-center bg-neutral-900/50 hover:bg-blue-500/20 border border-neutral-800 rounded-lg transition-colors duration-300 flex flex-col items-center gap-1 sm:gap-2 group"
@@ -437,25 +497,6 @@ const Contact = () => {
             </motion.div>
           </motion.div>
         </div>
-
-        {/* Back to Top */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="mt-12 sm:mt-16 text-center"
-        >
-          {/* <motion.button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            whileHover={{ scale: 1.1, y: -5 }}
-            whileTap={{ scale: 0.95 }}
-            className="p-3 rounded-full bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 transition-colors duration-300 group"
-            aria-label="Back to top"
-          >
-            <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-400 group-hover:text-white" />
-          </motion.button> */}
-        </motion.div>
       </motion.div>
     </section>
   );
