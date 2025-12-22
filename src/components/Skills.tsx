@@ -1,10 +1,16 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useState } from "react";
+import { 
+  Cpu,
+  Database,
+  Settings,
+  TrendingUp
+} from "lucide-react";
 
 interface SkillCategory {
   category: string;
   skills: string[];
-  icon: string;
+  icon: React.ReactNode;
   color: string;
 }
 
@@ -12,19 +18,19 @@ const skillCategories: SkillCategory[] = [
   {
     category: "Frontend Development",
     skills: ["HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript", "React.js", "Next.js", "Tailwind CSS", "Bootstrap", "Framer Motion"],
-    icon: "💻",
+    icon: <Cpu className="w-6 h-6" />,
     color: "from-blue-500 to-cyan-500"
   },
   {
     category: "Backend & Databases",
     skills: ["Node.js", "Python", "Django", "MongoDB", "SQL", "REST APIs", "Authentication", "API Integration"],
-    icon: "⚙️",
+    icon: <Database className="w-6 h-6" />,
     color: "from-purple-500 to-pink-500"
   },
   {
     category: "Tools & Methodologies",
     skills: ["Git, GitHub", "CI/CD", "Vercel", "Agile", "Responsive Design", "Performance", "Accessibility", "Testing"],
-    icon: "🛠️",
+    icon: <Settings className="w-6 h-6" />,
     color: "from-green-500 to-emerald-500"
   }
 ];
@@ -170,7 +176,7 @@ const Skills = () => {
                       scale: hoveredCategory === catIndex ? 1.2 : 1
                     }}
                     transition={{ duration: 0.3 }}
-                    className="text-3xl"
+                    className="text-blue-400"
                   >
                     {category.icon}
                   </motion.div>
@@ -229,7 +235,7 @@ const Skills = () => {
           ))}
         </div>
 
-        {/* Additional Skills Info */}
+        {/* Continuous Learning Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -237,82 +243,61 @@ const Skills = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mt-16 max-w-3xl mx-auto"
         >
-          <div className="grid sm:grid-cols-2 gap-8">
-            {/* Proficiency Levels */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="space-y-4"
-            >
-              <h4 className="text-xl font-semibold flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Expertise Focus
-              </h4>
-              <div className="space-y-3">
-                {[
-                  { skill: "React & Next.js", level: 90 },
-                  { skill: "TypeScript", level: 85 },
-                  { skill: "Tailwind CSS", level: 95 },
-                  { skill: "Responsive Design", level: 90 }
-                ].map((item, index) => (
-                  <div key={index} className="space-y-1">
-                    <div className="flex justify-between text-sm">
-                      <span className="text-neutral-300">{item.skill}</span>
-                      <span className="text-neutral-400">{item.level}%</span>
-                    </div>
-                    <div className="h-2 bg-neutral-800 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${item.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.8 + (index * 0.1), ease: "easeOut" }}
-                        className={`h-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500`}
-                      />
-                    </div>
-                  </div>
-                ))}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="p-8 rounded-xl bg-gradient-to-br from-neutral-900 to-black border border-neutral-800"
+          >
+            <div className="flex items-center gap-4 mb-6">
+              <TrendingUp className="w-8 h-8 text-yellow-400" />
+              <div>
+                <h4 className="text-2xl font-semibold">Continuous Learning</h4>
+                <p className="text-neutral-400">Always expanding my skillset</p>
               </div>
-            </motion.div>
-
-            {/* Continuous Learning */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.7 }}
-              className="p-6 rounded-xl bg-gradient-to-br from-neutral-900 to-black border border-neutral-800"
-            >
-              <h4 className="text-xl font-semibold mb-4 flex items-center gap-2">
-                <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-                Currently Learning
-              </h4>
-              <div className="space-y-3">
-                {["Advanced TypeScript", "Performance Optimization", "Web3 Basics", "Testing (Jest, Cypress)"].map((topic, index) => (
+            </div>
+            
+            <div className="space-y-4">
+              {[
+                { 
+                  topic: "Advanced TypeScript", 
+                  description: "Deepening knowledge of advanced TypeScript patterns and best practices" 
+                },
+                { 
+                  topic: "Performance Optimization", 
+                  description: "Learning advanced techniques for web performance and Core Web Vitals" 
+                },
+                { 
+                  topic: "Testing (Jest, Cypress)", 
+                  description: "Mastering testing methodologies for robust application development" 
+                },
+                { 
+                  topic: "Web3 Basics", 
+                  description: "Exploring blockchain technology and decentralized applications" 
+                }
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.8 + (index * 0.1) }}
+                  className="flex items-start gap-4 p-4 rounded-lg bg-neutral-900/50 hover:bg-neutral-800/50 transition-colors duration-300"
+                >
                   <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.9 + (index * 0.1) }}
-                    className="flex items-center gap-3 text-neutral-300"
-                  >
-                    <motion.div
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
-                      className="w-2 h-2 rounded-full bg-yellow-500"
-                    />
-                    <span>{topic}</span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: index * 0.2 }}
+                    className="w-3 h-3 rounded-full bg-yellow-500 mt-2 flex-shrink-0"
+                  />
+                  <div>
+                    <h5 className="font-medium text-neutral-200">{item.topic}</h5>
+                    <p className="text-sm text-neutral-400 mt-1">{item.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>
