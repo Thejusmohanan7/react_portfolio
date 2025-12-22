@@ -447,7 +447,7 @@ const Contact = () => {
           transition={{ delay: 0.6 }}
           className="mt-12 sm:mt-16 text-center"
         >
-          <motion.button
+          {/* <motion.button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             whileHover={{ scale: 1.1, y: -5 }}
             whileTap={{ scale: 0.95 }}
@@ -455,7 +455,7 @@ const Contact = () => {
             aria-label="Back to top"
           >
             <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6 text-neutral-400 group-hover:text-white" />
-          </motion.button>
+          </motion.button> */}
         </motion.div>
       </motion.div>
     </section>

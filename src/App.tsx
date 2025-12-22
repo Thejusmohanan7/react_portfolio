@@ -6,6 +6,7 @@ import Skills from "./components/Skills";
 import Education from "./components/Education";
 import Contact from "./components/Contact";
 import Navbar from "./components/Nav";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Education/>
       <Skills/>
       <Contact/>
+      <Footer/>
     </>
   );
 }
