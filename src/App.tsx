@@ -1,9 +1,7 @@
-export default function App() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-black">
-      <h1 className="text-4xl font-bold text-green-400">
-        Tailwind is FINALLY working 🚀
-      </h1>
-    </div>
-  );
+import Hero from "./components/Hero";
+
+function App() {
+  return <Hero />;
 }
+
+export default App;
