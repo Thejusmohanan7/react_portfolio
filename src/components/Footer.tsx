@@ -2,8 +2,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { 
   Heart, 
-  Code, 
-  Coffee, 
   ExternalLink,
   ArrowUp,
   Mail,
@@ -47,7 +45,7 @@ const Footer = () => {
   const socialLinks = [
     { 
       name: "LinkedIn", 
-      href: "https://linkedin.com/in/thejus-mohanan-a09282217", 
+      href: "https://linkedin.com/in/thejus-mohanan",
       icon: <Linkedin className="w-5 h-5" />,
       color: "text-blue-400 hover:text-blue-300"
     },
@@ -313,33 +311,7 @@ const Footer = () => {
               </motion.button>
             </div>
 
-            {/* Fun Stats */}
-            <div className="space-y-4 p-4 rounded-xl bg-neutral-900/30 border border-neutral-800">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Code className="w-4 h-4 text-blue-400" />
-                  <span className="text-sm text-neutral-300">Projects Built</span>
-                </div>
-                <span className="font-semibold text-white">25+</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Coffee className="w-4 h-4 text-yellow-400" />
-                  <span className="text-sm text-neutral-300">Coffee Cups</span>
-                </div>
-                <span className="font-semibold text-white">1,000+</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Heart className="w-4 h-4 text-red-400" />
-                  <span className="text-sm text-neutral-300">Happy Hours</span>
-                </div>
-                <span className="font-semibold text-white">∞</span>
-              </div>
-            </div>
-
-            {/* Visitor Counter */}
-           
+            <p className="mx-auto max-w-xs text-center text-sm leading-6 text-neutral-400 lg:ml-auto lg:mr-0 lg:text-right">Interested in a responsive React or Next.js experience? I’d love to hear about it.</p>
           </motion.div>
         </div>
 
@@ -372,35 +344,6 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex items-center gap-6 text-sm"
-          >
-            <a
-              href="#"
-              className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors duration-300 group"
-            >
-              <Shield className="w-4 h-4 group-hover:text-blue-400" />
-              <span>Privacy</span>
-            </a>
-            <a
-              href="#"
-              className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors duration-300 group"
-            >
-              <FileCode className="w-4 h-4 group-hover:text-green-400" />
-              <span>Terms</span>
-            </a>
-            <a
-              href="#"
-              className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors duration-300 group"
-            >
-              <Sparkles className="w-4 h-4 group-hover:text-purple-400" />
-              <span>Cookies</span>
-            </a>
-          </motion.div>
         </div>
 
         {/* Tech Stack Footer */}

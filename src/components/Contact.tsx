@@ -22,11 +22,11 @@ import {
 
 const contact = {
   name: "Thejus Mohanan",
-  role: "Front-End / Full-Stack Developer",
+  role: "Frontend Developer | React & Next.js",
   phone: "+91 8156970994",
   email: "thejusmohanan0@gmail.com",
   location: "N Paravoor, Ernakulam",
-  linkedin: "https://linkedin.com/in/thejus-mohanan-a09282217",
+  linkedin: "https://linkedin.com/in/thejus-mohanan",
   github: "https://github.com/Thejusmohanan7",
   leetcode: "https://leetcode.com/u/thejusmohanan7/",
   twitter: "https://twitter.com/thejusmohanan7"
@@ -52,15 +52,11 @@ const Contact = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
+    const subject = encodeURIComponent(`Portfolio enquiry from ${formData.name}`);
+    const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`);
+    window.location.href = `mailto:${contact.email}?subject=${subject}&body=${body}`;
     setIsSubmitting(false);
     setSubmitSuccess(true);
-    setFormData({ name: '', email: '', message: '' });
-    
-    // Reset success message after 3 seconds
     setTimeout(() => setSubmitSuccess(false), 3000);
   };
 
@@ -71,7 +67,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative min-h-screen bg-black text-white flex items-center justify-center overflow-hidden">
+    <section id="contact" className="relative bg-black text-white overflow-hidden py-8">
       {/* Animated Background with scroll effects */}
       <motion.div
         style={{ opacity: opacityBg, scale: scaleBg }}
@@ -423,7 +419,7 @@ const Contact = () => {
                     className="p-3 sm:p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400 text-center flex items-center justify-center gap-2 text-sm sm:text-base"
                   >
                     <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-                    Message sent successfully! I'll get back to you soon.
+                    Your email app is ready with your message.
                   </motion.div>
                 )}
 
@@ -454,7 +450,7 @@ const Contact = () => {
                     ) : (
                       <>
                         <Send className="w-4 h-4 sm:w-5 sm:h-5" />
-                        Let's Build Together
+                        Open Email Draft
                       </>
                     )}
                   </span>
@@ -463,7 +459,7 @@ const Contact = () => {
 
               <div className="flex items-center gap-2 mt-4 sm:mt-6 text-neutral-500 text-xs sm:text-sm">
                 <Shield className="w-3 h-3 sm:w-4 sm:h-4" />
-                <span>Your information is safe with me. I don't share contact details with third parties.</span>
+                <span>This opens your email app with a pre-filled message. Nothing is sent automatically.</span>
               </div>
             </motion.div>
 

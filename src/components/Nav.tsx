@@ -12,7 +12,10 @@ const Navbar = () => {
   const navItems = [
     { id: "home", label: "Home", icon: <Home className="w-4 h-4" /> },
     { id: "about", label: "About", icon: <User className="w-4 h-4" /> },
+    { id: "experience", label: "Experience", icon: <Code2 className="w-4 h-4" /> },
+    { id: "projects", label: "Projects", icon: <Code2 className="w-4 h-4" /> },
     { id: "skills", label: "Skills", icon: <Code2 className="w-4 h-4" /> },
+    { id: "education", label: "Education", icon: <User className="w-4 h-4" /> },
     { id: "contact", label: "Contact", icon: <Mail className="w-4 h-4" /> }
   ];
 
@@ -28,7 +31,7 @@ const Navbar = () => {
       setScrollProgress(scrolled);
       
       // Detect active section
-      const sections = ["home", "about", "skills", "contact"];
+      const sections = ["home", "about", "experience", "projects", "skills", "education", "contact"];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -108,7 +111,7 @@ const Navbar = () => {
         
         <div className="max-w-7xl mx-auto px-6 py-4">
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center justify-between">
+          <div className="hidden lg:flex items-center justify-between">
             {/* Empty space on left side where logo used to be */}
             <div className="w-0"></div>
 
@@ -163,7 +166,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Navigation */}
-          <div className="flex md:hidden items-center justify-between">
+          <div className="flex lg:hidden items-center justify-between">
             {/* Empty space on left side - logo removed */}
             <div className="w-0"></div>
 
@@ -224,7 +227,7 @@ const Navbar = () => {
       {/* Mobile Menu Overlay */}
       {isMenuOpen && (
         <motion.div
-          className="fixed inset-0 z-40 md:hidden"
+          className="fixed inset-0 z-40 lg:hidden"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -237,7 +240,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Content */}
       <motion.div
-        className={`fixed top-0 right-0 h-full w-72 z-50 md:hidden transform transition-transform duration-300 ease-out ${
+        className={`fixed top-0 right-0 h-full w-72 z-50 lg:hidden transform transition-transform duration-300 ease-out ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
         initial={false}

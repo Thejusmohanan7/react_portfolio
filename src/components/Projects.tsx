@@ -13,77 +13,100 @@ interface Project {
 
 const projects: Project[] = [
   {
+    name: "FlowAI",
+    description: "An AI-powered productivity platform that brings tasks, habits, notes, and calendar planning into one focused workspace.",
+    url: "https://flow-ai-ebon.vercel.app",
+    tech: ["React", "Next.js", "Node.js", "MongoDB", "Gemini AI", "Clerk", "Resend"],
+    built: [
+      "Unified task, habit, notes, and calendar modules with a stats dashboard",
+      "MongoDB data models for subtasks, recurring events, and habit streaks",
+      "Secure account access with Clerk authentication and light/dark themes",
+      "Automated email reminder workflow for due tasks and habits"
+    ],
+    challenges: [
+      "Designing data relationships that support recurring events and nested subtasks",
+      "Keeping task, habit, and calendar activity in sync across the dashboard",
+      "Creating reliable scheduled notifications for time-sensitive reminders",
+      "Making AI assistance useful without adding friction to everyday planning"
+    ],
+    features: [
+      "Gemini AI-generated task descriptions and subtasks",
+      "AI spell-checking for notes",
+      "Habit streak tracking across Health, Work, Learning, and Personal categories",
+      "Completion and activity analytics dashboard"
+    ]
+  },
+  {
     name: "Homora Interiors",
-    description: "A premium interior design agency website showcasing luxury home interiors and design services.",
+    description: "A responsive interiors website with a polished modern interface, smooth animations, and reusable component architecture.",
     url: "https://next-js-slxb.vercel.app/home",
     tech: ["Next.js", "Tailwind CSS", "TypeScript", "Framer Motion", "Responsive Design"],
     built: [
-      "Complete interior design agency website with service pages",
-      "Gallery showcase with categorized interior designs",
-      "Contact and inquiry system",
-      "SEO-optimized blog section for design tips"
+      "Responsive interior design website with service-focused pages",
+      "Reusable, component-based UI architecture",
+      "Modern layouts tailored to desktop, tablet, and mobile screens",
+      "Smooth, considered motion throughout the experience"
     ],
     challenges: [
-      "Creating smooth animations for image galleries without performance issues",
-      "Implementing responsive layouts for complex interior design showcases",
-      "Optimizing high-resolution interior images for fast loading",
-      "Building an intuitive navigation for portfolio categories"
+      "Balancing visual polish with responsive performance",
+      "Building flexible layouts for varied interior-design content",
+      "Keeping animations smooth across device sizes",
+      "Organizing reusable components without sacrificing page-specific design"
     ],
     features: [
-      "Responsive gallery with masonry layout",
-      "Smooth page transitions with Framer Motion",
-      "Contact form with email integration",
-      "Blog with markdown support",
+      "Responsive modern UI",
+      "Smooth interface animations",
+      "Component-based architecture",
+      "Cross-device layouts",
     ]
   },
   {
     name: "Own Media – Wedding Photography",
-    description: "A wedding photography portfolio website capturing love stories with elegant visual storytelling.",
+    description: "A responsive photography portfolio designed around optimized image rendering and elegant cross-device layouts.",
     url: "https://own-media-phi.vercel.app",
-    tech: ["React", "Next.js", "CSS Modules", "Responsive Design", "Image Optimization"],
+    tech: ["React", "Next.js", "Responsive Design", "Image Optimization"],
     built: [
-      "Wedding photography portfolio with categorized galleries",
-      "Client testimonial section",
-      "Booking and inquiry system",
-      "Blog for sharing wedding photography tips"
+      "Photography portfolio with a visual-first presentation",
+      "Responsive layouts for phones, tablets, and desktops",
+      "Optimized image rendering for image-heavy pages",
+      "Reusable Next.js and React components"
     ],
     challenges: [
-      "Optimizing high-resolution wedding photos for web without quality loss",
-      "Creating emotional storytelling through visual hierarchy",
-      "Implementing lazy loading for image-heavy galleries",
-      "Designing mobile-responsive portfolio layouts"
+      "Maintaining image quality while improving page performance",
+      "Creating a visual hierarchy that keeps photographs central",
+      "Managing image-heavy screens across connection speeds",
+      "Making gallery layouts adapt cleanly to smaller screens"
     ],
     features: [
-      "Image optimization with Next.js Image component",
-      "Parallax scrolling effects",
-      "Client testimonial carousel",
-      "Contact form with file upload for inquiries",
-      "Portfolio filtering by wedding categories"
+      "Optimized image rendering",
+      "Responsive gallery layouts",
+      "Cross-device experience",
+      "Component-driven implementation"
     ]
   },
   {
-    name: "Portfolio (HTML/Tailwind)",
-    description: "A static personal portfolio website demonstrating clean design and responsive layouts.",
-    url: "https://portv1-five.vercel.app",
-    tech: ["HTML", "Tailwind CSS", "JavaScript", "Vercel", "Responsive Design"],
+    name: "Personal Portfolio",
+    description: "An interactive developer portfolio with reusable React components, smooth navigation, and a responsive interface.",
+    url: "https://react-portfolio-gilt-xi.vercel.app",
+    tech: ["React", "Tailwind CSS", "Framer Motion", "Vercel", "Responsive Design"],
     built: [
-      "Personal portfolio showcasing skills and projects",
-      "Responsive design for all screen sizes",
-      "Contact section with form validation",
-      "Project showcase with live previews"
+      "Interactive portfolio showcasing skills, experience, and selected work",
+      "Reusable React components for each content section",
+      "Smooth navigation between portfolio sections",
+      "Responsive design across all screen sizes"
     ],
     challenges: [
-      "Achieving pixel-perfect responsive design without CSS frameworks",
-      "Implementing smooth scrolling navigation",
-      "Creating custom animations with vanilla JavaScript",
-      "Optimizing for Core Web Vitals"
+      "Creating a clear information hierarchy for recruiters and collaborators",
+      "Maintaining a cohesive visual system across distinct sections",
+      "Keeping motion purposeful and smooth",
+      "Adapting complex content to compact mobile screens"
     ],
     features: [
-      "Mobile-first responsive design",
-      "Custom CSS animations",
-      "Form validation with JavaScript",
-      "Dark theme implementation",
-      "Fast loading with minimal dependencies"
+      "Interactive navigation",
+      "Reusable component architecture",
+      "Responsive layouts",
+      "Smooth motion and transitions",
+      "Live project links"
     ]
   },
 ];
@@ -107,7 +130,7 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="relative min-h-screen bg-black text-white flex flex-col items-center overflow-hidden">
+    <section id="projects" className="relative bg-black text-white flex flex-col items-center overflow-hidden">
       {/* Animated Background with scroll effects */}
       <motion.div
         style={{ opacity: opacityBg, scale: scaleBg }}
@@ -160,7 +183,7 @@ const Projects = () => {
 
       <motion.div
         style={{ y: yContent }}
-        className="relative z-10 max-w-6xl w-full px-6 py-20"
+        className="relative z-10 max-w-6xl w-full px-6 py-24"
       >
         {/* Section Header with Animation */}
         <motion.div
@@ -168,7 +191,7 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-16"
+          className="text-left mb-12"
         >
           <div className="inline-flex items-center gap-4 mb-6">
             <motion.div
@@ -204,12 +227,12 @@ const Projects = () => {
             transition={{ delay: 0.4 }}
             className="text-lg text-neutral-400 max-w-2xl mx-auto"
           >
-            A selection of recent projects showcasing my frontend development skills and problem-solving abilities
+            Selected work across AI-assisted productivity, visual storytelling, and responsive frontend development.
           </motion.p>
         </motion.div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -219,7 +242,7 @@ const Projects = () => {
               transition={{ duration: 0.8, delay: index * 0.2, ease: "easeOut" }}
               onMouseEnter={() => setHoveredProject(index)}
               onMouseLeave={() => setHoveredProject(null)}
-              className="group relative"
+              className={`group relative ${index === 0 ? "lg:col-span-3" : ""}`}
             >
               {/* Project Card */}
               <motion.div
@@ -227,10 +250,11 @@ const Projects = () => {
                   y: -10,
                   boxShadow: "0 20px 40px rgba(0, 0, 0, 0.3)"
                 }}
-                className="h-full bg-gradient-to-br from-neutral-900 to-black rounded-xl border border-neutral-800 overflow-hidden relative group-hover:border-blue-500/50 transition-all duration-300"
+                className={`h-full bg-gradient-to-br from-neutral-900 to-black rounded-2xl border border-neutral-800 overflow-hidden relative group-hover:border-blue-500/50 transition-all duration-300 ${index === 0 ? "lg:grid lg:grid-cols-[1.2fr_.8fr]" : ""}`}
               >
                 {/* Card Header */}
                 <div className="p-6 pb-4">
+                  {index === 0 && <p className="mb-4 text-xs font-semibold uppercase tracking-[.2em] text-blue-300">Featured case study</p>}
                   {/* Project Icon */}
                   <motion.div
                     animate={{ 
@@ -371,7 +395,7 @@ const Projects = () => {
                 </div>
 
                 {/* Tech Stack */}
-                <div className="px-6 pb-6">
+                <div className={`px-6 pb-6 ${index === 0 ? "lg:flex lg:flex-col lg:justify-end lg:border-l lg:border-white/10 lg:py-8" : ""}`}>
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tech.map((tech, techIndex) => (
                       <motion.span

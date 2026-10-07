@@ -10,8 +10,18 @@ interface ExperienceItem {
 
 const experiences: ExperienceItem[] = [
   {
-    role: "Front End Developer",
-    company: "Hippozxtech Solutions",
+    role: "Freelance Frontend Developer",
+    company: "Self-employed",
+    period: "Jan 2026 – Present",
+    description: [
+      "Design and build responsive, animated websites and web interfaces with React, Next.js, and Tailwind CSS.",
+      "Translate client requirements into reusable, cross-browser-compatible UI components.",
+      "Deploy and maintain live projects on Vercel using Git-based workflows."
+    ],
+  },
+  {
+    role: "Frontend Developer",
+    company: "Hippoxztech Solutions",
     period: "Feb 2025 – Present",
     description: [
       "Built full-stack web apps using Next.js, React, Node.js, MongoDB.",
@@ -52,7 +62,7 @@ const Experience = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="experience" className="relative min-h-screen bg-black text-white flex items-center overflow-hidden">
+    <section id="experience" className="relative bg-black text-white overflow-hidden py-8">
       {/* Animated Background with scroll effects */}
       <motion.div
         style={{ opacity: opacityBg, scale: scaleBg }}
@@ -64,11 +74,11 @@ const Experience = () => {
         <motion.div
           style={{ y: useTransform(scrollY, [0, 500], [0, 100]) }}
           className="absolute top-1/4 right-1/4 w-72 h-72 bg-blue-600 rounded-full mix-blend-screen filter blur-3xl opacity-10"
-          animate={{ 
+          animate={{
             x: ["0%", "4%", "0%"],
             scale: [1, 1.15, 1]
           }}
-          transition={{ 
+          transition={{
             duration: 9,
             repeat: Infinity,
             repeatType: "reverse"
@@ -77,11 +87,11 @@ const Experience = () => {
         <motion.div
           style={{ y: useTransform(scrollY, [0, 500], [0, -80]) }}
           className="absolute bottom-1/3 left-1/4 w-64 h-64 bg-purple-600 rounded-full mix-blend-screen filter blur-3xl opacity-10"
-          animate={{ 
+          animate={{
             y: ["0%", "-4%", "0%"],
             rotate: [0, 90, 180, 270, 360]
           }}
-          transition={{ 
+          transition={{
             duration: 11,
             repeat: Infinity,
             ease: "linear"
@@ -91,7 +101,7 @@ const Experience = () => {
 
       <motion.div
         style={{ y: yContent }}
-        className="relative z-10 max-w-5xl mx-auto px-6 py-20 w-full"
+        className="relative z-10 max-w-5xl mx-auto px-6 py-16 w-full"
       >
         {/* Section Header with Animation */}
         <motion.div
@@ -158,7 +168,7 @@ const Experience = () => {
               >
                 {/* Timeline Node */}
                 <motion.div
-                  animate={{ 
+                  animate={{
                     scale: hoveredIndex === index ? 1.3 : 1,
                     boxShadow: hoveredIndex === index ? "0 0 20px rgba(59, 130, 246, 0.5)" : "none"
                   }}
@@ -177,7 +187,7 @@ const Experience = () => {
 
                 {/* Content Card */}
                 <motion.div
-                  whileHover={{ 
+                  whileHover={{
                     x: 10,
                     backgroundColor: "rgba(255, 255, 255, 0.03)",
                     borderColor: "rgba(59, 130, 246, 0.3)"
@@ -188,7 +198,7 @@ const Experience = () => {
                   <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
                     <div>
                       <motion.h3
-                        animate={{ 
+                        animate={{
                           color: hoveredIndex === index ? "#ffffff" : "#f3f4f6"
                         }}
                         className="text-xl sm:text-2xl font-semibold"
@@ -196,7 +206,7 @@ const Experience = () => {
                         {exp.role}
                       </motion.h3>
                       <motion.p
-                        animate={{ 
+                        animate={{
                           color: hoveredIndex === index ? "#d1d5db" : "#9ca3af"
                         }}
                         className="text-sm text-neutral-400"
@@ -204,7 +214,7 @@ const Experience = () => {
                         {exp.company}
                       </motion.p>
                     </div>
-                    
+
                     <motion.span
                       whileHover={{ scale: 1.1 }}
                       className="px-4 py-1 text-sm bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-300 rounded-full border border-blue-500/30 w-fit"
@@ -226,7 +236,7 @@ const Experience = () => {
                         className="flex items-start gap-3 text-neutral-300 text-sm sm:text-base leading-relaxed"
                       >
                         <motion.div
-                          animate={{ 
+                          animate={{
                             scale: hoveredIndex === index ? 1.2 : 1,
                             rotate: hoveredIndex === index ? [0, 10, -10, 0] : 0
                           }}
@@ -254,7 +264,7 @@ const Experience = () => {
                           whileInView={{ opacity: 1, scale: 1 }}
                           viewport={{ once: true }}
                           transition={{ delay: 0.9 + (techIdx * 0.05) }}
-                          whileHover={{ 
+                          whileHover={{
                             scale: 1.1,
                             y: -3,
                             backgroundColor: "rgba(59, 130, 246, 0.2)",

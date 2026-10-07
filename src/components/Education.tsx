@@ -11,7 +11,7 @@ const education = [
   {
     degree: "B.Tech",
     institute: "KMEA Engineering College, Aluva",
-    period: "2017–2021",
+    period: "2018–2021",
     description: "Bachelor of Technology in Computer Science",
     icon: <GraduationCap className="w-8 h-8" />
   },
@@ -41,7 +41,7 @@ const Education = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="education" className="relative min-h-screen bg-black text-white flex items-center overflow-hidden">
+    <section id="education" className="relative bg-black text-white overflow-hidden py-8">
       {/* Animated Background with scroll effects */}
       <motion.div
         style={{ opacity: opacityBg, scale: scaleBg }}
@@ -94,7 +94,7 @@ const Education = () => {
 
       <motion.div
         style={{ y: yContent }}
-        className="relative z-10 max-w-5xl mx-auto px-6 py-20 w-full"
+        className="relative z-10 max-w-5xl mx-auto px-6 py-16 w-full"
       >
         {/* Section Header with Animation */}
         <motion.div

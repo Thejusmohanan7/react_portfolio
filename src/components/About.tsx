@@ -15,7 +15,7 @@ const About = () => {
   const scaleBg = useTransform(scrollY, [0, 400], [1, 1.05]);
 
   return (
-    <section id="about" className="relative min-h-screen flex items-center bg-black text-white overflow-hidden">
+    <section id="about" className="relative bg-black text-white overflow-hidden py-8">
       {/* Animated Background with scroll effects */}
       <motion.div
         style={{ opacity: opacityBg, scale: scaleBg }}
@@ -69,7 +69,7 @@ const About = () => {
       {/* Content Container */}
       <motion.div
         style={{ y: yContent }}
-        className="relative z-10 max-w-6xl mx-auto px-6 py-20"
+        className="relative z-10 max-w-6xl mx-auto px-6 py-16"
       >
         {/* Section Header with Animation */}
         <motion.div
